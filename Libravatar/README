@@ -1,0 +1,12 @@
+LibravatarPlugin 0.1
+
+About:
+This will allow users to use their Libravatar Avatar with your StatusNet install.
+
+Configuration:
+add this to your config.php:
+addPlugin('Libravatar', array());
+
+To do:
+Site default all on for libravatar by default
+Migration Script
