@@ -48,18 +48,24 @@ class LibravatarPlugin extends Plugin
 
     function libravatar_url($email, $size)
     {
-            require_once 'Services/Libravatar.php';
-
-            if (!class_exists('Services_Libravatar')) {
-                // TRANS: Libravatar library missing exception.
-                throw new Exception(_m('The PEAR Services_Libravatar library is required for the Libravatar plugin.'));
+        try {
+            if (stream_resolve_include_path('Services/Libravatar.php')) {
+                include_once 'Services/Libravatar.php';
             }
+        }
+        catch (Exception $e) {
+            // It doesn't matter
+        }
+        if (!class_exists('Services_Libravatar')) {
+            // TRANS: Libravatar library missing exception.
+            throw new Exception(_m('The PEAR Services_Libravatar library is required for the Libravatar plugin.'));
+        }
 
-            $libravatar = new Services_Libravatar();
-            $libravatar->setSize($size)
-                       ->setDefault(Avatar::defaultImage($size))
-                       ->setHttps(true);
-            $url = $libravatar->getUrl($email);
+        $libravatar = new Services_Libravatar();
+        $libravatar->setSize($size)
+                   ->setDefault(Avatar::defaultImage($size))
+                   ->setHttps(true);
+        $url = $libravatar->getUrl($email);
 
             return $url;
     }

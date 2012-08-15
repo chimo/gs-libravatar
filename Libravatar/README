@@ -4,6 +4,7 @@ About:
 This will allow users to use their Libravatar Avatar with your StatusNet install.
 
 Configuration:
+Requires php 5.3.2+
 Install services_libravatar from PEAR
 add this to your config.php:
 addPlugin('Libravatar', array());
