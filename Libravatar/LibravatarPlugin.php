@@ -48,17 +48,23 @@ class LibravatarPlugin extends Plugin
 
     function libravatar_url($email, $size)
     {
-        try {
-            if (stream_resolve_include_path('Services/Libravatar.php')) {
-                include_once 'Services/Libravatar.php';
+        global $config;
+        $defaultavatar = Avatar::defaultImage($size);
+
+        if (isset($config['Libravatar']) && isset($config['Libravatar']['nocheck']) && $config['Libravatar']['nocheck'] === true) {
+           include_once 'Services/Libravatar.php';
+        } else {
+            try {
+                if (function_exists('stream_resolve_include_path') && stream_resolve_include_path('Services/Libravatar.php')) {
+                    include_once 'Services/Libravatar.php';
+                }
+            } catch (exception $e) {
+                return $defaultavatar;
             }
         }
-        catch (Exception $e) {
-            // It doesn't matter
-        }
+
         if (!class_exists('Services_Libravatar')) {
-            // TRANS: Libravatar library missing exception.
-            throw new Exception(_m('The PEAR Services_Libravatar library is required for the Libravatar plugin.'));
+            return $defaultavatar;
         }
 
         $libravatar = new Services_Libravatar();
@@ -67,7 +73,8 @@ class LibravatarPlugin extends Plugin
                    ->setHttps(true);
         $url = $libravatar->getUrl($email);
 
-            return $url;
+        return $url;
+
     }
 
     function onPluginVersion(&$versions)
@@ -77,7 +84,7 @@ class LibravatarPlugin extends Plugin
                             'author' => 'Melissa Draper, Eric Helgeson, Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Libravatar',
                             'rawdescription' =>
-                            // TRANS: Plugin decsription.
+                            // TRANS: Plugin description.
                             _m('The Libravatar plugin allows users to use their <a href="http://www.libravatar.org/">Libravatar</a> with StatusNet.'));
 
         return true;
