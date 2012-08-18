@@ -16,14 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. TRANS: Libravatar library missing exception.
-#: LibravatarPlugin.php:55
-msgid ""
-"The PEAR Services_Libravatar library is required for the Libravatar plugin."
-msgstr ""
-
-#. TRANS: Plugin decsription.
-#: LibravatarPlugin.php:74
+#. TRANS: Plugin description.
+#: LibravatarPlugin.php:88
 msgid ""
 "The Libravatar plugin allows users to use their <a href=\"http://www.libravatar."
 "org/\">Libravatar</a> with StatusNet."
