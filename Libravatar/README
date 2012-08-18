@@ -1,14 +1,53 @@
+====================
 LibravatarPlugin 0.1
+====================
 
-About:
-This will allow users to use their Libravatar Avatar with your StatusNet install.
+About
+-----
+This will add Libravatar.org (and federated Libravatar instance) support!
+    
+Enaling this plugin adds Libravatar support, which replaces the
+Gravatar functionality which is enabled by default. Libravatar has
+a Gravatar fallback, so users without Libravatar accounts but who
+do have Gravatar accounts will not notice a change. Libravatar
+users will see their Libravatar avatars.
+    
+This plugin requires PEAR Services_Libravatar to be installed
+before avatars will work. If it is not installed, the default
+avatar will be shown instead, even if the Gravatar plugin is still
+enabled. The Gravatar plugin should be disabled for performance if
+this plugin is enabled.
 
-Configuration:
-Requires php 5.3.2+
-Install services_libravatar from PEAR
-add this to your config.php:
-addPlugin('Libravatar', array());
+If you are running a very high-traffic statusnet instance and opt
+to enable this plugin, you should consider also hosting a CDN mirror
+for the Libravatar project.
 
-To do:
-Site default all on for libravatar by default
-Migration Script
+http://wiki.libravatar.org/talk_to_us/
+
+Lastly, there is a preinclude safety check to avoid log pollution, 
+this will be skipped if your php version predates 5.3.2, which will
+mean your logs will get spammed if Services_Libravatar is not
+correctly installed. Just FYI :)
+
+Configuration
+-------------
+This plugin requires PEAR Services_Libravatar to be installed:
+  pear install services_libravatar
+
+Before enabling this plugin, add this to your config.php:
+  addPlugin('Libravatar', array());
+
+Performance hints:
+
+Disabling the Gravatar plugin will reduce processing load; they are
+not compatible. Gravatar will not work if this plugin is enabled
+(except by the fallback mechanism), so there's no point in keeping
+it on.
+
+You can reduce filesystem hits by removing the pre-include safety
+check by adding the following to your config.php:
+  $config['Libravatar']['nocheck'] = true;
+
+To do
+-----
+Same thing we do every night, Pinky.
