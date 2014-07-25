@@ -84,7 +84,7 @@ class LibravatarPlugin extends Plugin
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'Libravatar',
-                            'version' => STATUSNET_VERSION,
+                            'version' => GNUSOCIAL_VERSION,
                             'author' => 'Melissa Draper, Eric Helgeson, Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Libravatar',
                             'rawdescription' =>
