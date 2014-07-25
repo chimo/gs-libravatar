@@ -33,13 +33,17 @@ class LibravatarPlugin extends Plugin
     function onEndProfileGetAvatar($profile, $size, &$avatar)
     {
         if (empty($avatar)) {
-            $user = $profile->getUser();
-            if (!empty($user) && !empty($user->email)) {
-                // Fake one!
-                $avatar = new Avatar();
-                $avatar->width = $avatar->height = $size;
-                $avatar->url = $this->libravatar_url($user->email, $size);
-                return false;
+            try {
+                $user = $profile->getUser();
+                if (!empty($user) && !empty($user->email)) {
+                    // Fake one!
+                    $avatar = new Avatar();
+                    $avatar->width = $avatar->height = $size;
+                    $avatar->url = $this->libravatar_url($user->email, $size);
+                    return false;
+                }
+            } catch (Exception $e) {
+                common_log(LOG_DEBUG, "Couldn't find User for Profile id: " . $profile->id . " (" . $profile->nickname . ")");
             }
         }
 
