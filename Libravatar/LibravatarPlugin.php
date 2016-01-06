@@ -81,7 +81,7 @@ class LibravatarPlugin extends Plugin
 
     }
 
-    function onPluginVersion(&$versions)
+    function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Libravatar',
                             'version' => GNUSOCIAL_VERSION,
