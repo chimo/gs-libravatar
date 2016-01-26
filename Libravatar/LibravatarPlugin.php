@@ -30,7 +30,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class LibravatarPlugin extends Plugin
 {
-    function onEndProfileGetAvatar($profile, $size, &$avatar)
+    function onEndProfileGetAvatar(Profile $profile, $size, Avatar &$avatar=null)
     {
         if (empty($avatar)) {
             try {
