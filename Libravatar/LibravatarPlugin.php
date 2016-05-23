@@ -86,7 +86,7 @@ class LibravatarPlugin extends Plugin
         $versions[] = array('name' => 'Libravatar',
                             'version' => GNUSOCIAL_VERSION,
                             'author' => 'Melissa Draper, Eric Helgeson, Evan Prodromou',
-                            'homepage' => 'http://status.net/wiki/Plugin:Libravatar',
+                            'homepage' => 'https://github.com/chimo/gs-libravatar',
                             'rawdescription' =>
                             // TRANS: Plugin description.
                             _m('The Libravatar plugin allows users to use their <a href="http://www.libravatar.org/">Libravatar</a> with StatusNet.'));
