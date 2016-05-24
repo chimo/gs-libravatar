@@ -30,6 +30,8 @@ if (!defined('GNUSOCIAL')) {
 
 class LibravatarPlugin extends Plugin
 {
+    const VERSION = '0.2.0';
+
     function onEndProfileGetAvatar(Profile $profile, $size, Avatar &$avatar=null)
     {
         if (empty($avatar)) {
@@ -65,7 +67,7 @@ class LibravatarPlugin extends Plugin
     function onPluginVersion(array &$versions)
     {
         $versions[] = array('name' => 'Libravatar',
-                            'version' => GNUSOCIAL_VERSION,
+                            'version' => self::VERSION,
                             'author' => 'Melissa Draper, Eric Helgeson, Evan Prodromou',
                             'homepage' => 'https://github.com/chimo/gs-libravatar',
                             'rawdescription' =>
