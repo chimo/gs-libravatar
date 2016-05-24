@@ -37,9 +37,9 @@ class LibravatarPlugin extends Plugin
                 $user = $profile->getUser();
                 if (!empty($user) && !empty($user->email)) {
                     // Fake one!
-                    $avatar = new Avatar();
+                    $avatar = new Remote_Avatar();
                     $avatar->width = $avatar->height = $size;
-                    $avatar->url = $this->libravatar_url($user->email, $size);
+                    $avatar->remote_url = $this->libravatar_url($user->email, $size);
                     return false;
                 }
             } catch (Exception $e) {
