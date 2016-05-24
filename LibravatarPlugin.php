@@ -22,7 +22,7 @@
  * @maintainer Melissa Draper <melissa@catalyst.net.nz>
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('GNUSOCIAL')) {
     // This check helps protect against security problems;
     // your code file can't be executed directly from the web.
     exit(1);
@@ -70,7 +70,7 @@ class LibravatarPlugin extends Plugin
                             'homepage' => 'https://github.com/chimo/gs-libravatar',
                             'rawdescription' =>
                             // TRANS: Plugin description.
-                            _m('The Libravatar plugin allows users to use their <a href="http://www.libravatar.org/">Libravatar</a> with StatusNet.'));
+                            _m('The Libravatar plugin allows users to use their <a href="http://www.libravatar.org/">Libravatar</a> with GNU social.'));
 
         return true;
     }
