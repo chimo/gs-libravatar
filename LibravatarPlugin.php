@@ -52,25 +52,6 @@ class LibravatarPlugin extends Plugin
 
     function libravatar_url($email, $size)
     {
-        global $config;
-        $defaultavatar = Avatar::defaultImage($size);
-
-        if (isset($config['Libravatar']) && isset($config['Libravatar']['nocheck']) && $config['Libravatar']['nocheck'] === true) {
-           include_once 'Services/Libravatar.php';
-        } else {
-            try {
-                if (function_exists('stream_resolve_include_path') && stream_resolve_include_path('Services/Libravatar.php')) {
-                    include_once 'Services/Libravatar.php';
-                }
-            } catch (exception $e) {
-                return $defaultavatar;
-            }
-        }
-
-        if (!class_exists('Services_Libravatar')) {
-            return $defaultavatar;
-        }
-
         $libravatar = new Services_Libravatar();
         $libravatar->setSize($size)
                    ->setDefault(Avatar::defaultImage($size))
